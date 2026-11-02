@@ -8,7 +8,7 @@ public class Maquina
     public string destino;
     public Contexto Ctx { get; set; }
     public Estado Actual { get; set; }
-    public Dictionary<string, Estado> estados = new Dictionary<string, Estado>();
+    public Dictionary<string, Estado> estados;    
 
     public Maquina(List<Estado> lista, Contexto ctx)
     {
@@ -21,7 +21,7 @@ public class Maquina
 
     public void Iniciar(string nombre)
     {
-        CambiarA(nombre);
+         CambiarA(nombre);
     }
 
     public string CambiarA(string nombre)
@@ -29,22 +29,16 @@ public class Maquina
         if (!estados.ContainsKey(nombre))
         {
             Debug.Log("No hay estado en la lista con ese nombre");
-            return null;
-        }
 
-        string anterior = null;
+            return nombre;
+        }
+            
+       string anterior = null;
 
         if (Actual != null)
         {
-            anterior = Actual.Nombre;
             Actual.Salir(nombre);
         }
-
-        Actual = estados[nombre];
-        Actual.Ctx = Ctx;
-        Actual.Entrar(anterior);
-
-        return nombre;
     }
 
     public void Actualizar(float dt)
@@ -70,7 +64,7 @@ public class Maquina
         }
 
         this.trigger = trigger;
-        destino = Actual.AlRecibir(trigger, valor);
+        destino = Actual.AlRecibir( trigger,  valor);
 
         if (destino != null && destino != Actual.Nombre)
         {
