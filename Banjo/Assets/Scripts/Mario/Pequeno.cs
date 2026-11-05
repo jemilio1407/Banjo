@@ -4,36 +4,22 @@ public class Pequeno : Estado
 {
     public override void Entrar(string anterior)
     {
-        Debug.Log("Mario es pequeño");
+        Debug.Log("Mario Pequeno ");
     }
 
-    public override void Salir(string siguiente)
+    public override string AlRecibir(string trigger, int valor = 0)
     {
-        Debug.Log("Mario dejó de ser pequeño");
-    }
-
-    public override string AlRecibir(string trigger, int valor)
-    {
-        if (trigger == "hongo")
-        {
-            return "Grande";
-        }
-
-        if (trigger == "flor")
-        {
-            return "Fuego";
-        }
-
-        if (trigger == "estrella")
-        {
-            return "Estrella";
-        }
-
-        if (trigger == "dano")
-        {
-            return "Muerto";
-        }
+        if (trigger == "hongo") { return "Grande"; }
+        if (trigger == "flor") { return "Fuego"; }
+        if (trigger == "estrella") { return "Estrella"; }
+        if (trigger == "dano") { return "Muerto"; }
 
         return null;
     }
+
+    public override void Salir(string anterior)
+    {
+        Debug.Log("Saliendo de Pequeno");
+    }
+
 }

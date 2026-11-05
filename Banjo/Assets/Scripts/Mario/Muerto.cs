@@ -4,16 +4,20 @@ public class Muerto : Estado
 {
     public override void Entrar(string anterior)
     {
-        Debug.Log("Mario ha muerto...");
+        Debug.Log("Mario Muerto ");
     }
 
-    public override void Salir(string siguiente)
+    public override string AlRecibir(string trigger, int valor = 0)
     {
-        Debug.Log("Mario ha revivido");
-    }
-
-    public override string AlRecibir(string trigger, int valor)
-    {
+       
         return null;
+        
     }
+
+    public override void Salir(string anterior)
+    {
+        Debug.Log("Mario Dead?");
+    }
+
 }
+
