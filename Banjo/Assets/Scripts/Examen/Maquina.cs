@@ -25,20 +25,25 @@ public class Maquina
     }
 
     public string CambiarA(string nombre)
-    {
+    {        
         if (!estados.ContainsKey(nombre))
         {
             Debug.Log("No hay estado en la lista con ese nombre");
-
-            return nombre;
+            return;
         }
-            
-       string anterior = null;
 
-        if (Actual != null)
+        string estadoAnterior = null;
+
+        if(actual != null)
         {
+            estadoAnterior = Actual.Nombre;
             Actual.Salir(nombre);
         }
+
+
+
+        Actual = estados[nombre];
+        Actual.Entrar(estadoAnterior);
     }
 
     public void Actualizar(float dt)
